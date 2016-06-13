@@ -47,9 +47,9 @@ class JoomlaExtension implements Extension
                 ->scalarNode('base_url')
                     ->defaultNull()
                 ->end()
-                
-                ->scalarNode('environment')
-                    ->defaultValue('.env_behat')
+                ->scalarNode('base_path')
+                    ->ifNull()
+                    ->thenInvalid('base_path must be provided')
                 ->end()
             ->end();
     }
@@ -70,8 +70,7 @@ class JoomlaExtension implements Extension
 
         $config['base_url'] = $minksBaseUrl ? $minksBaseUrl : $joomlasBaseUrl;
 
-        $this->setEnvironment($config);
-        $this->loadJoomla();
+        $this->loadJoomla($config);
         $this->loadContextInitializer($container);
 
         $container->setParameter('joomla.parameters', $config);
@@ -85,17 +84,13 @@ class JoomlaExtension implements Extension
         $container->setDefinition('joomla.context_initializer', $definition);
     }
 
-
-    private function setEnvironment(array $config)
-    {
-        putenv('.ENV=' . $config['environment']);
-    }
-
     /**
      * Boot up Joomla
      */
-    private function loadJoomla()
+    private function loadJoomla(array $config)
     {
+        define('SYMLA_PATH_ROOT', $config['base_path']);
+
         CliBootstrap::bootstrap();
     }
 }

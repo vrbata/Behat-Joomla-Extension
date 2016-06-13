@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "02c1fab1529b972229e678e077e28246",
-    "content-hash": "ca2464beba14395cc3a85611fa8da535",
+    "hash": "c331633a6f9b0b2493307ea6a0f5303b",
+    "content-hash": "29e0e29c9f74b94daabadf88602bdb45",
     "packages": [
         {
             "name": "behat/behat",
@@ -864,6 +864,36 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2016-05-26 21:46:24"
+        },
+        {
+            "name": "symla/cli",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vrbata/Symla-CLI.git",
+                "reference": "ad9b2d9d1a32d1bb1c50343057b253c3001ba15f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vrbata/Symla-CLI/zipball/ad9b2d9d1a32d1bb1c50343057b253c3001ba15f",
+                "reference": "ad9b2d9d1a32d1bb1c50343057b253c3001ba15f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symla\\Joomla\\Cli\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Josef Vrbata",
+                    "email": "vrbata.josef@gmail.com"
+                }
+            ],
+            "description": "Simplified creation of cli scripts for Joomla",
+            "time": "2016-06-13 17:21:31"
         }
     ],
     "packages-dev": [],

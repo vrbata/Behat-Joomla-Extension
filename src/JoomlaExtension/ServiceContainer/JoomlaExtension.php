@@ -48,8 +48,7 @@ class JoomlaExtension implements Extension
                     ->defaultNull()
                 ->end()
                 ->scalarNode('base_path')
-                    ->ifNull()
-                    ->thenInvalid('base_path must be provided')
+                    ->isRequired()
                 ->end()
             ->end();
     }

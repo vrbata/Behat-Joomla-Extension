@@ -91,5 +91,16 @@ class JoomlaExtension implements Extension
         define('SYMLA_PATH_ROOT', $config['base_path']);
 
         CliBootstrap::bootstrap();
+
+        $url = parse_url($config['base_url']);
+
+        $_SERVER['HTTP_HOST']    = $url['host'];
+        $_SERVER['HTTPS']        = $url['scheme'] === 'http' ? '' : $url['scheme'];
+        $_SERVER['PHP_SELF']     = $url['path'] . '/index.php';
+        $_SERVER['REQUEST_URI']  = $url['path'];
+        $_SERVER['SCRIPT_NAME']  = $url['path'] . '/index.php';
+        $_SERVER['QUERY_STRING'] = '';
+
+        \JFactory::getApplication('site');
     }
 }

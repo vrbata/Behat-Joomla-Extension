@@ -101,6 +101,12 @@ class JoomlaExtension implements Extension
         $_SERVER['SCRIPT_NAME']  = $url['path'] . '/index.php';
         $_SERVER['QUERY_STRING'] = '';
 
-        \JFactory::getApplication('site');
+        $application = \JFactory::getApplication('site');
+        $reflection  = new \ReflectionClass(\JApplicationSite::class);
+        $method      = $reflection->getMethod('initialiseApp');
+
+        $method->setAccessible(true);
+        $method->invoke($application);
+
     }
 }

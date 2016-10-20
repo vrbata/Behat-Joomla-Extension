@@ -23,22 +23,8 @@ trait JoomlaTrait
         return rtrim($parsedUrl['path'], "/");
     }
 
-    public function loadAdministratorLanguage()
+    public function route($path)
     {
-        $this->loadLanguage('administrator');
-    }
-
-    public function loadSiteLanguage()
-    {
-        $this->loadLanguage('site');
-    }
-
-    private function loadLanguage($type = 'site')
-    {
-        $params   = \JComponentHelper::getParams('com_languages');
-        $language = $params->get($type, 'en-GB');
-        $lang     = \JLanguage::getInstance($language);
-
-        \JFactory::$language = $lang;
+        return str_replace($this->relativeBaseUrl(), '', \JRoute::_($path));
     }
 }

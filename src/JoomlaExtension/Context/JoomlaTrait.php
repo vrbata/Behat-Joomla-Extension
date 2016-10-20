@@ -19,8 +19,9 @@ trait JoomlaTrait
     public function relativeBaseUrl()
     {
         $parsedUrl = parse_url($this->joomlaParameters['base_url']);
+        $path      = $parsedUrl['path'] ?? '';
 
-        return rtrim($parsedUrl['path'], "/");
+        return rtrim($path, "/");
     }
 
     public function route($path)

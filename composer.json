@@ -15,7 +15,7 @@
         }
     },
     "require": {
-        "behat/behat": "~3.1.0",
+        "behat/behat": "^3.2",
         "behat/mink": "^1.7",
         "behat/mink-extension": "^2.2",
         "symla/cli": "^1.0"

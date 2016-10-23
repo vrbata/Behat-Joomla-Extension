@@ -44,12 +44,12 @@ class JoomlaExtension implements Extension
     {
         $builder
             ->children()
-            ->scalarNode('base_url')
-            ->defaultNull()
-            ->end()
-            ->scalarNode('base_path')
-            ->isRequired()
-            ->end()
+                ->scalarNode('base_url')
+                    ->defaultNull()
+                ->end()
+                ->scalarNode('base_path')
+                    ->isRequired()
+                ->end()
             ->end();
     }
 
@@ -92,14 +92,13 @@ class JoomlaExtension implements Extension
 
         CliBootstrap::bootstrap();
 
-        $url  = parse_url($config['base_url']);
-        $path = $url['path'] ?? '';
+        $url = parse_url($config['base_url']);
 
         $_SERVER['HTTP_HOST']    = $url['host'];
         $_SERVER['HTTPS']        = $url['scheme'] === 'http' ? '' : $url['scheme'];
-        $_SERVER['PHP_SELF']     = $path . '/index.php';
-        $_SERVER['REQUEST_URI']  = $path;
-        $_SERVER['SCRIPT_NAME']  = $path . '/index.php';
+        $_SERVER['PHP_SELF']     = $url['path'] . '/index.php';
+        $_SERVER['REQUEST_URI']  = $url['path'];
+        $_SERVER['SCRIPT_NAME']  = $url['path'] . '/index.php';
         $_SERVER['QUERY_STRING'] = '';
 
         $application = \JFactory::getApplication('site');

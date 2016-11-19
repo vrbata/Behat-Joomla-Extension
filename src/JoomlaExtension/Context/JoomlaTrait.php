@@ -25,6 +25,6 @@ trait JoomlaTrait
 
     public function route($path)
     {
-        return str_replace($this->relativeBaseUrl(), '', \JRoute::_($path));
+        return str_replace($this->relativeBaseUrl(), '', \JRoute::_($path, false));
     }
 }

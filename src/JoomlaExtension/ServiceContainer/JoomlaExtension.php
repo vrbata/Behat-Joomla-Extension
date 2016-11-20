@@ -50,6 +50,10 @@ class JoomlaExtension implements Extension
                 ->scalarNode('base_path')
                     ->isRequired()
                 ->end()
+                ->scalarNode('application')
+                    ->isRequired()
+                    ->defaultValue('site')
+                ->end()
             ->end();
     }
 
@@ -88,9 +92,10 @@ class JoomlaExtension implements Extension
      */
     private function loadJoomla(array $config)
     {
+        define('JDEBUG', 0);
         define('SYMLA_PATH_ROOT', $config['base_path']);
 
-        CliBootstrap::bootstrap();
+        CliBootstrap::bootstrap($config['application']);
 
         $url = parse_url($config['base_url']);
 
@@ -101,8 +106,9 @@ class JoomlaExtension implements Extension
         $_SERVER['SCRIPT_NAME']  = $url['path'] . '/index.php';
         $_SERVER['QUERY_STRING'] = '';
 
-        $application = \JFactory::getApplication('site');
-        $reflection  = new \ReflectionClass(\JApplicationSite::class);
+        $class       = 'JApplication' . ucfirst($config['application']);
+        $application = \JFactory::getApplication($config['application']);
+        $reflection  = new \ReflectionClass($class);
         $method      = $reflection->getMethod('initialiseApp');
 
         $method->setAccessible(true);

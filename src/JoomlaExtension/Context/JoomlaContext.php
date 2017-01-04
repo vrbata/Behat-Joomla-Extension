@@ -4,5 +4,5 @@ namespace Symla\Behat\JoomlaExtension\Context;
 
 class JoomlaContext implements JoomlaAwareContext
 {
-    use JoomlaTrait;
+    use Routing;
 }

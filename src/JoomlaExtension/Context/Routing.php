@@ -2,7 +2,7 @@
 
 namespace Symla\Behat\JoomlaExtension\Context;
 
-trait JoomlaTrait
+trait Routing
 {
     protected $joomlaParameters;
 

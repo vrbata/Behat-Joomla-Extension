@@ -4,5 +4,10 @@ namespace Symla\Behat\JoomlaExtension\Context;
 
 class JoomlaContext implements JoomlaAwareContext
 {
-    use JoomlaTrait;
+    protected $joomlaParameters;
+
+    public function setJoomlaParameters(array $parameters)
+    {
+        $this->joomlaParameters = $parameters;
+    }
 }

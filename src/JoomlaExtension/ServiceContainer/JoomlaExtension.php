@@ -2,6 +2,7 @@
 
 namespace Symla\Behat\JoomlaExtension\ServiceContainer;
 
+use Symla\Behat\JoomlaExtension\Context\Router;
 use Symla\Joomla\Cli\CliBootstrap;
 use Behat\Behat\Context\ServiceContainer\ContextExtension;
 use Behat\Testwork\ServiceContainer\Extension;
@@ -44,16 +45,16 @@ class JoomlaExtension implements Extension
     {
         $builder
             ->children()
-                ->scalarNode('base_url')
-                    ->defaultNull()
-                ->end()
-                ->scalarNode('base_path')
-                    ->isRequired()
-                ->end()
-                ->scalarNode('application')
-                    ->isRequired()
-                    ->defaultValue('site')
-                ->end()
+            ->scalarNode('base_url')
+            ->defaultNull()
+            ->end()
+            ->scalarNode('base_path')
+            ->isRequired()
+            ->end()
+            ->scalarNode('application')
+            ->isRequired()
+            ->defaultValue('site')
+            ->end()
             ->end();
     }
 
@@ -114,5 +115,6 @@ class JoomlaExtension implements Extension
         $method->setAccessible(true);
         $method->invoke($application);
 
+        Router::initialize($config);
     }
 }

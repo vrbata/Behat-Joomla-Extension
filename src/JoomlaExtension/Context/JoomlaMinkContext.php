@@ -6,14 +6,10 @@ use Behat\MinkExtension\Context\MinkContext;
 
 class JoomlaMinkContext extends MinkContext implements JoomlaAwareContext
 {
-    use JoomlaTrait;
+    protected $joomlaParameters;
 
-    public function logInToAdministrator($username, $password)
+    public function setJoomlaParameters(array $parameters)
     {
-        $this->visit('/administrator/');
-        $this->fillField('mod-login-username', $username);
-        $this->fillField('mod-login-password', $password);
-
-        $this->pressButton(\JText::_('JLOGIN'));
+        $this->joomlaParameters = $parameters;
     }
 }
